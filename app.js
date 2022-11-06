@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const cors  = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const errController = require('./controllers/errorController');
@@ -12,6 +13,8 @@ const app = express();
 
 
 //middlewares
+//0. Cors
+app.use(cors());
 //1. request logger
 if(process.env.NODE_ENV === 'development')
     app.use(morgan('dev'));
