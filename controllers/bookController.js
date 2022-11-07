@@ -97,7 +97,8 @@ module.exports.deleteABook = catchAsync(async function(req,res,next){
     })
 })
 module.exports.searchQuery = catchAsync(async function(req,res,next){
-    let query = req.params.query;
+    let query2 = req.params.query;
+    let query = decodeURI(query2);
     let queryNumber = Number(query);
     if(isNaN(queryNumber)){
         //query is not a number -> author name, title
