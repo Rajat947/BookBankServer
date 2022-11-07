@@ -21,7 +21,7 @@ if(process.env.NODE_ENV === 'development')
 //2. body parser
 app.use(bodyParser.json());
 //3. Cookie Parser
-// app.use(cookieParser());
+app.use(cookieParser());
 //routes
 app.use('/api/books',bookRouter);
 app.use('/api/users',userRouter);

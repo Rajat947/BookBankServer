@@ -100,6 +100,10 @@ module.exports.searchQuery = catchAsync(async function(req,res,next){
     let query2 = req.params.query;
     let query = decodeURI(query2);
     let queryNumber = Number(query);
+    // res.cookie('test','Aa rha hu bc',{
+    //   expires  : new Date(Date.now() + 9999999),
+    //   httpOnly : true
+    // });
     if(isNaN(queryNumber)){
         //query is not a number -> author name, title
         const books = await Book.find({$or: [ { author: query }, { name: query } ]})

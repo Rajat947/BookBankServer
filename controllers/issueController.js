@@ -106,7 +106,7 @@ module.exports.returnABook = catchAsync(async function(req,res,next){
         const bookIssued = issuesByUser[i].book;        
         if(bookIssued.slug === slug){
             bookFoundInUserAcc = true;
-            issueID = issuesByUser._id;
+            issueID = issuesByUser[i]._id;
             break;
         }   
     }
@@ -119,7 +119,7 @@ module.exports.returnABook = catchAsync(async function(req,res,next){
     //book found in user account
     //deleting issue record and updating copies in book collections
     const newCopies = bookFound.copies;
-    await Issue.findByIdAndDelete(issueID);
+    let temp = await Issue.deleteOne({_id: issueID});
     await Book.findByIdAndUpdate(bookID, {copies:newCopies + 1});
     return res.status(200).json({
             "status" : "success",
